@@ -1,0 +1,66 @@
+FCFS and SJF
+
+Q1) Write a program to implement FCFS Algorithm
+
+P = ['A', 'B', 'C', 'D']
+bt = [5, 4, 2, 6]
+
+wt = [0]
+
+for i in range(1, len(bt)):
+    wt.append(wt[i-1] + bt[i-1])
+
+tat = [wt[i] + bt[i] for i in range(len(bt))]
+
+print("P  BT  WT  TAT")
+
+for i in range(len(P)):
+    print(P[i], bt[i], wt[i], tat[i])
+
+print("Avg WT =", sum(wt)/len(wt))
+print("Avg TAT =", sum(tat)/len(tat))
+Output
+P  BT  WT  TAT
+A  5   0   5
+B  4   5   9
+C  2   9   11
+D  6   11  17
+
+Avg WT = 6.25
+Avg TAT = 10.5
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Q2) Write a program to implement SJF Algorithm
+
+P = ['A', 'B', 'C', 'D']
+bt = [5, 4, 2, 6]
+
+data = list(zip(P, bt))
+
+data.sort(key = lambda x: x[1])
+
+P = [i[0] for i in data]
+bt = [i[1] for i in data]
+
+wt = [0]
+
+for i in range(1, len(bt)):
+    wt.append(wt[i-1] + bt[i-1])
+
+tat = [wt[i] + bt[i] for i in range(len(bt))]
+
+print("P  BT  WT  TAT")
+
+for i in range(len(P)):
+    print(P[i], bt[i], wt[i], tat[i])
+
+print("Average WT =", sum(wt)/len(wt))
+print("Average TAT =", sum(tat)/len(tat))
+Output
+P  BT  WT  TAT
+C  2   0   2
+B  4   2   6
+A  5   6   11
+D  6   11  17
+
+Average WT = 4.75
+Average TAT = 9.0
