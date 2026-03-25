@@ -1,0 +1,19 @@
+alloc = [[1,0],[2,1],[0,1],[1,0]]
+req   = [[0,1],[1,0],[1,0],[0,1]]
+avail = [1,0]
+
+n, m = len(alloc), len(avail)
+finish = [0]*n
+
+while True:
+    done = False
+    for i in range(n):
+        if not finish[i] and all(req[i][j] <= avail[j] for j in range(m)):
+            avail = [avail[j] + alloc[i][j] for j in range(m)]
+            finish[i] = 1
+            done = True
+    if not done: break
+
+dead = [f"P{i}" for i in range(n) if not finish[i]]
+
+print("Deadlock:" if dead else "No Deadlock", dead)
