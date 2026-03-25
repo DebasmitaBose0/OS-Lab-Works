@@ -17,3 +17,5 @@ while len(safe) < n:
 
 print("SAFE" if len(safe)==n else "NOT SAFE")
 print("Sequence:", safe)
+
+Output: SAFE, Sequence: ['P0', 'P1', 'P2']
