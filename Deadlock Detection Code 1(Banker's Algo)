@@ -1,0 +1,19 @@
+alloc = [[1,0],[0,1],[1,1]]
+maxm  = [[2,1],[1,2],[2,2]]
+avail = [1,1]
+
+n, m = len(alloc), len(avail)
+need = [[maxm[i][j]-alloc[i][j] for j in range(m)] for i in range(n)]
+
+finish = [0]*n
+safe = []
+
+while len(safe) < n:
+    for i in range(n):
+        if not finish[i] and all(need[i][j] <= avail[j] for j in range(m)):
+            avail = [avail[j] + alloc[i][j] for j in range(m)]
+            finish[i] = 1
+            safe.append(f"P{i}")
+
+print("SAFE" if len(safe)==n else "NOT SAFE")
+print("Sequence:", safe)
