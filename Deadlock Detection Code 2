@@ -17,3 +17,5 @@ while True:
 dead = [f"P{i}" for i in range(n) if not finish[i]]
 
 print("Deadlock:" if dead else "No Deadlock", dead)
+
+**Output: No Deadlock**
