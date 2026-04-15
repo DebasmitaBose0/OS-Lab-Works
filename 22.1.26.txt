@@ -1,6 +1,6 @@
 ASSIGNMENT – 1
 
-Question 1:
+Question 1: 
 
 Write the steps to install WSL for Linux environment.
 
