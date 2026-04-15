@@ -1,0 +1,71 @@
+1) WAP to demonstrate process synchronization using wait() system call, where the parent waits for the child process to continue.
+A- import os
+pid = os.fork()
+if pid == 0:
+    print("Child process running, PID:", os.getpid())
+else: 
+    os.wait()
+    print("Parent process resumes after child completes, PID:", os.getpid())
+
+O/P:
+Child process running, PID: 1234
+Parent process resumes after child completes, PID: 1233
+---------------------------------------------------------------------------------------------------------------------------------------------------
+2) WAP to create an orphan process, where the parent process terminates before the child process (use sleep()).
+A- import os
+import time
+pid = os.fork()
+if pid == 0:
+    time.sleep(5)
+    print("Child process, PID:", os.getpid())
+    print("Parent PID:", os.getppid())
+else:
+    print("Parent exiting, PID:", os.getpid())
+
+O/P:
+Parent exiting, PID: 1233
+Child process, PID: 1234
+Parent PID: 1
+---------------------------------------------------------------------------------------------------------------------------------------------------
+3) WAP to create a zombie process, where the child process terminates but the parent does not wait.
+A- import os
+import time
+pid = os.fork()
+if pid == 0:
+    print("Child exiting, PID:", os.getpid())
+    os._exit(0)
+else:
+    time.sleep(10)
+    print("Parent running, PID:", os.getpid())
+
+O/P:
+Child exiting, PID: 1234
+Child becomes zombie for some time
+Parent running, PID: 1233
+---------------------------------------------------------------------------------------------------------------------------------------------------
+4) WAP to create multiple child processes using fork().
+A- import os
+for i in range(3):
+    pid = os.fork()
+    if pid == 0:
+        print("Child", i+1, "PID:", os.getpid())
+        break
+
+O/P:
+Child 1 PID: 1234
+Child 2 PID: 1235
+Child 3 PID: 1236
+---------------------------------------------------------------------------------------------------------------------------------------------------
+5) WAP to create a child process using fork() & display the process IDs of both parent & child using getpid() & getppid().
+A- import os
+pid = os.fork()
+if pid == 0:
+    print("Child PID:", os.getpid())
+    print("Parent PID from child:", os.getppid())
+else:
+    print("Parent PID:", os.getpid())
+
+O/P:
+Parent PID: 1233
+Child PID: 1234
+Parent PID from child: 1233
